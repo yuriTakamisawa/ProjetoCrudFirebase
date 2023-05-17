@@ -117,7 +117,7 @@ async function updatePedidos() {
   }
   
   console.log('Hello firebase.');
-  // escreverEspecialDoDia();
+  // addNovaColecao();
   // addNovoDocumento();
   // readUnicoDocumento();
   // readVariosDocumentos();
