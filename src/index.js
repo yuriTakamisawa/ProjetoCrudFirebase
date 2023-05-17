@@ -63,13 +63,10 @@ async function readVariosDocumentos() {
         orderBy('precoTotal'),
         limit(10)
     );
-    // const querySnapshot = await getDocs(pedidosClientesQuery);
+    
     onSnapshot(pedidosClientesQuery, (querySnapshot) => {
         console.log(JSON.stringify(querySnapshot.docs.map((e) => e.data())))
     })
-    // const allDocs = querySnapshot.forEach(snap => {
-    //     console.log(`Documento ${snap.id} contem ${JSON.stringify(snap.data())}`)
-    // });
 }
 
 
