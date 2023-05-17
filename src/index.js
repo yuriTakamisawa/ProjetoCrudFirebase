@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, collection, addDoc, getDoc, onSnapshot, query, where, getDocs, orderBy, limit, deleteDoc, } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, collection, addDoc, getDoc, onSnapshot, query, where, getDocs, orderBy, limit, deleteDoc, updateDoc } from 'firebase/firestore';
 
 
 
@@ -92,9 +92,38 @@ async function deletePedidos() {
     });
 }
 
-console.log('Hello firebase.');
-addNovaColecao();
-// addNovoDocumento();
-// readUnicoDocumento();
-// readVariosDocumentos();
-// deletePedidos();
+async function updatePedidos() {
+    const pedidosClientesQuery = query(
+      collection(firestore, 'pedidos'),
+      where('bebida', '==', 'Cafe'),
+      limit(10)
+    );
+  
+    const querySnapshot = await getDocs(pedidosClientesQuery);
+    querySnapshot.forEach((doc) => {
+      const updatedData = {
+        bebida: 'Chá',
+        precoTotal: 8.5,
+      };
+  
+      updateDoc(doc.ref, updatedData)
+        .then(() => {
+          console.log('Pedido atualizado com sucesso.');
+        })
+        .catch((error) => {
+          console.log('Ocorreu um erro ao atualizar o pedido:', error);
+        });
+    });
+  }
+  
+  console.log('Hello firebase.');
+  // escreverEspecialDoDia();
+  // addNovoDocumento();
+  // readUnicoDocumento();
+  // readVariosDocumentos();
+  // deletePedidos();
+  // updatePedidos();
+  
+
+
+
